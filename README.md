@@ -1,3 +1,5 @@
+# g_spec
+
 g_spec is a spectral simulation program for converting molecular energy and
 dipole trajectories into simulated linear and nonlinear optical spectra. In
 conjunction with the open-source program g_amide, it enables the user to
@@ -30,8 +32,6 @@ www.netlib.org/lapack).
 (4) Working BLAS libraries for linear algebra processing (see
 www.netlib.org/blas). 
 
-(5) (Optional) Working OpenBLAS libraries for replacing BLAS, LAPACK, and
-LAPACKE libraries. (see http://www.openblas.net)
 
 
 Although not required, g_spec can also make use of OpenMP libraries to
@@ -86,33 +86,12 @@ flag under the LIBFLAGS variable in the Makefile). If you do not have an
 OpenMP library available (or do not know how to access it), leave the flag set
 to FALSE. 
 
-Second, the flag DOUBLE_PREC will turn on double precision if set to "TRUE" or
-(by default) "FALSE". Double precision is more accurate with the cost of
-memory. But in practice, single precision should be good.
+Second, the GROMACS_DIR flag should be set to the absolute path of your
+GROMACS installation directory, e.g. /home/mike/apps/gromacs/. 
 
-Third, the flag BLAS_subroutines uses BLAS matrix vector multiplication
-routines to propagate wavefunction in dynamic wavefunction propagation scheme.
-By default, it is set to "FALSE".
-
-Fourth, the flag USE_OpenBLAS makes the complier use optimized OpenBLAS
-library instead of BLAS, LAPACK, and LAPACKE libraries. By default, it is set
-to "FALSE".
-
-The following four indicates the paths of libraries.
-
-The GROMACS_DIR flag should be set to the absolute path of your GROMACS
-installation directory, e.g. /home/mike/apps/gromacs/.
-
-The BLAS_DIR flag must be set to the absolute path of the BLAS installation
-directory, e.g. /home/mike/apps/blas.
-
-The LAPACK_DIR flag must be set to the absolute path of the LAPACK
+Finally, the LAPACK_DIR flag must be set to the absolute path of the LAPACK
 installation directory, e.g. /home/mike/apps/lapack. Note that this package
-must include the lapacke header files for linking with C code.
-
-Finally, the OpenBLAS_DIR flag should be set to the absolute path of the
-OpenBLAS installation directory if any, e.g. /home/mike/apps/OpenBLAS.
-
+must include the lapacke header files for linking with C code. 
 
 
 (2) Compile the code. In the same directory as your Makefile and source code
@@ -130,3 +109,4 @@ your system) with OMP_PARALLEL set to FALSE.
 (3) Run a test calculation! A set of example input files is included in the
 directory g_spec/test/input, along with a brief tutorial describing basic
 syntax for the program. 
+
