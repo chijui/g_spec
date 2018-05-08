@@ -337,7 +337,15 @@ int main ( int argc, char * argv[] ) {
 	
 	// For static calculations, winzpad is to prevent wraparound error 
 	// when dressing with a lifetime-limited lorentzian. 
-	if(nise) winzpad = (int) (1)/(winterp*c*tstep) + 1;
+	if(nise) {
+		winzpad = (int) (1)/(winterp*c*tstep) + 1;
+		if (winzpad < window) {
+                  printf("Error: the provided winterp gives shorter spectra array (%d) than requested window size (%d)\n", winzpad, window);
+                  printf("Please give smaller winterp or smaller tscan.\n");
+                  graceful_exit( error, nbuffer, win2d, nthreads, npol, nise, nosc );
+                  return 0;
+                }
+	}
 	else winzpad = 5*npts;
 	
 	// The buffer length must be nread-1 frames longer than the required time window
