@@ -307,8 +307,8 @@ int graceful_exit( int error, int nbuffer, int win2d, int nthreads, int npol, in
 	unset_gnreal_1d_array(SitesBuffer);
 
 	// FFT arrays
-	if(FTin1D!=NULL) free(FTin1D);
-	if(FTout1D!=NULL) free(FTout1D);
+	if(FTin1D!=NULL) fftw_free(FTin1D);
+	if(FTout1D!=NULL) fftw_free(FTout1D);
 	if(FTplan1D!=NULL) fftw_destroy_plan(FTplan1D);
 	if(FTin2D!=NULL) fftw_free(FTin2D);
 	if(FTout2D!=NULL) fftw_free(FTout2D);
