@@ -17,4 +17,9 @@ int check_shift(int nshift, int *SHIFTNDX, int nosc);
 int check_sites(char* Sitesname, char* Hamname, int nosc, int nframes);
 int check_dipoles(char Dipnames[3][maxchar], char *Hamname, int nosc, int nframes);
 
+// cjfeng 05/07/2018
+// sub-routines for checking 2Q files
+int check_ham2Q(char* Ham2Qname, int *nframes, int *nosc, int *n2Q, int nbuffer, int nread, int info, int win2d, int nthreads);
+int check_dip2Q(char Dip2Qnames[3][maxchar], char *Ham2Qname, int n2Q, int nframes);
+
 #endif

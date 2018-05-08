@@ -46,4 +46,10 @@ int print_nise_2d_traj(FILE *fp, fftw_complex *FTout2D, int nprint, int ndxstart
 int print_2d(FILE *fp, GNCOMP **spec, int npts, int *POL, int p);
 int print_2d_traj(FILE *fp, GNCOMP **spec, int npts, int *POL, int p);
 
+// cjfeng 05/07/2018
+int read_dip2Q(FILE **fp, GNREAL **Dip, int n2Q);
+int make_fnames_new( char* Infoname, char* Hamname, char* hamnm, char Dipnames[3][maxchar], char* dipxnm, char* dipynm, char* dipznm, char* Ham2Qname, char* ham2Qnm, char Dip2Qnames[3][maxchar], char* dipx2Qnm, char* dipy2Qnm, char* dipz2Qnm, char* Sitesname, char* sitesnm, char* axisnm, char* ftirnm, char* lognm, char polnm[4][16], char rephnm[4][maxchar], char nrephnm[4][maxchar], char Trajnm[10][maxchar], char* Parname, char* paramnm, char* outname, char* deffnm, int do_traj );
+int assign_input_files_new( char* Infoname, char* Hamname, char* hamnm, char Dipnames[3][maxchar], char* dipxnm, char* dipynm, char* dipznm, char* Ham2Qname, char* ham2Qnm, char Dip2Qnames[3][maxchar], char* dipx2Qnm, char* dipy2Qnm, char* dipz2Qnm, char* Sitesname, char* sitesnm, char* Parname, char* paramnm, char* deffnm );
+int open_all_new( char* Hamname, char Dipnames[3][maxchar], char* Ham2Qname, char Dip2Qnames[3][maxchar], char* Sitesname, char* axisnm, char* ftirnm, char* lognm, int npol, int POL[4], char rephnm[4][maxchar], char nrephnm[4][maxchar], char Trajnames[10][maxchar], int do2d, int do_traj);
+
 #endif

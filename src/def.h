@@ -2,6 +2,8 @@
 #define DEF_H
 
 #include "fftw3.h"			// fftw for Fourier Transform
+
+// #include "physics.h"		// Physical constants used in Gromacs
 #include "macros.h"
 #include "gstat.h"
 #include "string2.h"
@@ -57,8 +59,10 @@ extern real* SHIFT;
 
 // File pointers
 extern FILE *hfp, *Dfp[3], *sfp, *afp, *ffp, *lfp, *rfp[4], *nrfp[4], *ifp;
-// cjfeng 04/26/2017
-extern FILE *efp;
+// cjfeng 05/07/2018
+// hfp2Q: Two-quantum Hamiltonian, ham2Q.txt
+// Dfp2Q: Two-quantum dipole moments, dip[xyz]2Q.txt
+extern FILE *hfp2Q, *Dfp2Q[3];
 // Trajfp is an array of trajectory file pointers: time-stamp, FTIR, rzzzz, rzzyy, rzyyz, rzyzy, nrzzzz, nrzzyy, nrzyyz, nrzyzy
 extern FILE *Trajfp[10];
 
@@ -104,6 +108,10 @@ extern GNCOMP *U2Qs;
 
 extern GNREAL ***Dip2QMat;
 extern GNCOMP **U2QMat;
+
+// cjfeng 05/07/2018
+// 2Q trajectories
+extern GNREAL **Ham2QMat;
 
 extern GNREAL **Ham2QAr;
 extern GNREAL **Evals2QAr;

@@ -11,6 +11,9 @@
 
 int allocate_all( int window, int win2d, int winzpad, int nosc, int nbuffer, int nthreads, int n2Q, int pert, int do2d, GNREAL tstep, GNREAL TauP, int npts, int nise );
 int graceful_exit( int error, int nbuffer, int win2d, int nthreads, int npol, int nise, int nosc); 
+// cjfeng 05/07/2018
+int allocate_all_new( int window, int win2d, int winzpad, int nosc, int nbuffer, int nthreads, int n2Q, int pert, int do2d, int if2Qfiles, GNREAL tstep, GNREAL TauP, int npts, int nise );
+int graceful_exit_new( int error, int nbuffer, int win2d, int nthreads, int npol, int nise, int nosc); 
 
 int set_eig_array(eig_array *eig, int n);
 int unset_eig_array(eig_array *eig);
