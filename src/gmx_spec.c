@@ -600,10 +600,10 @@ int main ( int argc, char * argv[] ) {
       error = read_sites(sfp, SitesBuffer, Ham1QMat, nosc, xfr);
       // cjfeng 05/07/2018
       // 2Q Hamiltonian if specified
-      if( if2Qfiles) error = read_ham(hfp2Q, Ham2QMat[xfr], n2Q);
+      if( do2d && if2Qfiles ) error = read_ham(hfp2Q, Ham2QMat[xfr], n2Q);
       if(error) break;
       // 2Q Dipole moments if specified
-      if( if2Qfiles) error = read_dip2Q(Dfp2Q, Dip2QMat[xfr], n2Q);
+      if( do2d && if2Qfiles ) error = read_dip2Q(Dfp2Q, Dip2QMat[xfr], n2Q);
       if(error) break;
 
       // Add any specified shifts to the Hamiltonian matrix
