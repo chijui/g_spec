@@ -11,25 +11,26 @@
 
 #define nosc_switch 0 // Switch between home-built gemv and optimized BLAS gemv routines.
 
-int gen_ExDip2Q(GNREAL ***ExDip2QAr, GNREAL ***Dip2QAr, GNREAL **Ham1QAr, GNREAL **Ham2QAr, int nosc, int n2Q, int tid);
+int gen_ExDip2Q(GNREAL ***ExDip2QAr, GNREAL ***Dip2QAr, GNREAL **Ham1QAr, GNREAL **Ham2QAr, traj_param *traj_param, int tid);
 
-int gen_ham_2Q(GNREAL *Ham1Q, int nosc, GNREAL *Ham2Q, int n2Q, real delta);
-int gen_dip_2Q(GNREAL *Dip1Q, GNREAL *Dip2Q, int nosc, int n2Q);
+int gen_ham_2Q(GNREAL *Ham1Q, GNREAL *Ham2Q, traj_param *traj_param, real delta);
+int gen_dip_2Q(GNREAL **Dip1Q, GNREAL **Dip2Q, traj_param *traj_param);
+int gen_dip_Sp2Q_ind(int *Dip2Qrow, int *Dip2Qcol, traj_param *traj_param);
+int gen_dip_Sp2Q(GNREAL **Dip1Q, GNREAL **Dip2Q, traj_param *traj_param);
 
-int gen_avg_1Q_ham(GNREAL **ham, GNREAL *avg_ham, GNREAL *hann, int nosc, int fr, int whann, int window, int nbuffer);
-int gen_avg_dip(GNREAL ***dip1Q, GNREAL ***dip2Q, GNREAL ***avg_dip1Q, GNREAL ***avg_dip2Q, int nosc, int n2Q, int fr, int nAvgd, int do2d, int pert, int pertvec, int whann, int window, int nbuffer);
+int gen_avg_ham(GNREAL **ham, GNREAL *avg_ham, GNREAL *hann, int fr, w_param *w_param, traj_param *traj_param);
+int gen_avg_dip(GNREAL ***dip1Q, GNREAL ***dip2Q, GNREAL ***avg_dip1Q, GNREAL ***avg_dip2Q, int fr, int nAvgd, traj_param *traj_param, spec_param *spec_param, w_param *w_param);
 
-GNREAL orient(GNREAL **Dip1[3], GNREAL **Dip2[3], int tid, int ndxA, int ndxB, int ndxC, int ndxD, int pol);
-// int gen_pert_prop( GNCOMP *U1Q, GNCOMP *U2Q, int nosc, int n2Q, double expfac, double delta);
+GNREAL orient(GNREAL **Dip1[3], GNREAL **Dip2[3], int tid, int ndxA, int ndxB, int ndxC, int ndxD, int pol, POL_info *pol_info);
 int gen_perturb_2Q_energies(GNREAL *Evecs1Q, GNREAL *Evals1Q, GNREAL *Evals2Q, int nosc, real delta );
-int gen_perturb_2Q_vectors(GNREAL *Evecs1Q, GNREAL *Evals1Q, GNREAL *Evecs2Q, GNREAL *Evals2Q, int nosc, int n2Q, real delta );
-int gen_perturb_2Q_matrix(GNREAL *Evecs1Q, GNREAL *Evals1Q, GNREAL *Evecs2Q, GNREAL *Evals2Q, GNREAL *Temp2Q, int nosc, int n2Q, real delta );
-// cjfeng 04/24/2017
-int gen_popdecay(GNREAL *popdecay, GNREAL tstep, GNREAL TauP, int window, int win2d);
-// cjfeng 07/20/2017
-int gen_BLAS_gemv_opt(BLAS_gemv_opt *gemv_opt);
+int gen_popdecay(GNREAL *popdecay, spec_param *spec_param, w_param *w_param, int if2Q);
+int gen_hann(GNREAL *hann, int window, phys_const *Const);
+int apply_shift(GNREAL *Ham1Q, shift_info *shift_info, int nosc);
 
-int calc_2dir(GNREAL **Evals1QAr, GNREAL **Evals2QAr, GNREAL **ExDip1QAr[3], GNREAL **ExDip2QAr[3], int tid, int nosc, int n2Q, int npts, GNREAL res, GNREAL start, GNREAL stop, GNCOMP *REPH[4], GNCOMP *NREPH[4], int POL[4], int npol, int reph, int nreph);
-int calc_2dir_pert(GNREAL **Evals1QAr, GNREAL **Evals2QAr, GNREAL **ExDip1QAr[3], int tid, int nosc, int n2Q, int npts, GNREAL res, GNREAL start, GNREAL stop, GNCOMP *REPH[4], GNCOMP *NREPH[4], int POL[4], int npol, int reph, int nreph);
+int gen_U1Q(GNREAL **Ham1QMat, GNREAL **Evals1QAr, GNCOMP **U1QMat, spec_param *spec_param, w_param *w_param, traj_param *traj_param, int justread, int readframe, double expfac);
+int gen_U2Q(GNREAL **Ham1QMat, GNREAL **Ham2QMat, GNREAL **Evals2QAr, GNCOMP **U2QMat, spec_param *spec_param, w_param *w_param, traj_param *traj_param, int justread, int readframe, real delta, double expfac);
+int calc_ftir(GNREAL *ftir, GNREAL **Evals1QAr, GNREAL **ExDip1QAr[3], w_param *w_param, int nosc, int tid);
+void eig_avg_Ham2Q(GNREAL **Ham1QAr, GNREAL **Ham2QAr, GNREAL **Evals1QAr, GNREAL **Evals2QAr, GNREAL **ExDip2QAr[3], int *isuppz2Q, spec_param *spec_param, w_param *w_param, traj_param *traj_param, int tid, real delta);
+int calc_2dir(GNREAL **Evals1QAr, GNREAL **Evals2QAr, GNREAL **ExDip1QAr[3], GNREAL **ExDip2QAr[3], int tid, traj_param *traj_param, w_param *w_param, GNCOMP *REPH[4], GNCOMP *NREPH[4], POL_info *pol_info, spec_param *spec_param);
 
 #endif
