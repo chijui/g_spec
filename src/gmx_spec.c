@@ -476,13 +476,15 @@ int main ( int argc, char * argv[] ) {
               int i;
               // cjfeng 12/19/2018
               // Using sparse matrix
+              // cjfeng 05/01/2018
+              // Fixing the index of Dip2QMat and Dip2QSpMat from tau1+tau2 to xfr2
               if(!spec_param.if2Qfiles) {
-                initialize_psi2Q_Sp(psi_a[tau1+tau2], Dip2QSpMat[tau1+tau2], Dip2Qrow, Dip2Qcol, psi_ca, &traj_param, spec_param.nthreads);
-                initialize_psi2Q_Sp(psi_b1[tau1+tau2], Dip2QSpMat[tau1+tau2], Dip2Qrow, Dip2Qcol, psi_cb, &traj_param, spec_param.nthreads);
+                initialize_psi2Q_Sp(psi_a[tau1+tau2], Dip2QSpMat[xfr2], Dip2Qrow, Dip2Qcol, psi_ca, &traj_param, spec_param.nthreads);
+                initialize_psi2Q_Sp(psi_b1[tau1+tau2], Dip2QSpMat[xfr2], Dip2Qrow, Dip2Qcol, psi_cb, &traj_param, spec_param.nthreads);
               }
               else {
-                initialize_psi2Q(psi_a[tau1+tau2], Dip2QMat[tau1+tau2], psi_ca, &traj_param, spec_param.nthreads);
-                initialize_psi2Q(psi_b1[tau1+tau2], Dip2QMat[tau1+tau2], psi_cb, &traj_param, spec_param.nthreads);
+                initialize_psi2Q(psi_a[tau1+tau2], Dip2QMat[xfr2], psi_ca, &traj_param, spec_param.nthreads);
+                initialize_psi2Q(psi_b1[tau1+tau2], Dip2QMat[xfr2], psi_cb, &traj_param, spec_param.nthreads);
               }
               for(tau3=0; tau3<w_param.window; tau3++) {
                 xfr3 = (fr+tau1+tau2+tau3)%traj_param.nbuffer;
